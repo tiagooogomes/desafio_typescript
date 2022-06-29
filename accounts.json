@@ -85,6 +85,22 @@
         "accountVerificationCode": "111",
         "owner": "Felipe Bueno Tanaguchi",
         "CPF": "08541551555",
+        "balance": "4000"
+    },
+    {
+        "agencyNumber": "11111",
+        "accountNumber": "7777777",
+        "accountVerificationCode": "111",
+        "owner": "Felipe Bueno Tanaguchi",
+        "CPF": "08541551555",
+        "balance": 0
+    },
+    {
+        "agencyNumber": "55555",
+        "accountNumber": "6666666",
+        "accountVerificationCode": "555",
+        "owner": "Felipe Bueno Tanaguchi",
+        "CPF": "08541551555",
         "balance": 0
     }
 ]
