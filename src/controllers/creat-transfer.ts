@@ -7,7 +7,7 @@ const creatTransfer = (req: Request, res: Response) => {
   const originAccount = accountValidator(req.body.originAccount);
   const destinationAccount = accountValidator(req.body.destinationAccount);
   const value = checkBalanceService(req.body.originAccount, req.body.value);
-  console.log(value, ' valuee');
+
   const acess = req.body;
 
   if (typeof originAccount === 'string') {

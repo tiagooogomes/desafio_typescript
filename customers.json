@@ -1,16 +1,1 @@
-[
-    {
-        "name": "Anderson Ferreira",
-        "document": "76763008007",
-        "birtdate": "1995/01/02",
-        "accountPassword": "2222",
-        "password": "559533"
-    },
-    {
-        "name": "Felipe Bueno Tanaguchi",
-        "document": "08541551555",
-        "birtdate": "1995/01/02",
-        "accountPassword": "2424",
-        "password": "559533"
-    }
-]
+[{"name":"Felipe Bueno Tanaguchi","document":"08541551555","birtdate":"1995/01/02","password":"559533"}]

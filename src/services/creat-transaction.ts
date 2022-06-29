@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { transactionType } from '../models';
-import { generateNumber } from '.';
+import { generateNumber } from '../utils';
 
 const creatTransaction = (type: string, transaction: transactionType) => {
   const customersData: any = fs.readFileSync('transactions.json');
