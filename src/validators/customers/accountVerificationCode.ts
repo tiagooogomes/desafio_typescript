@@ -1,10 +1,10 @@
 const accountCodeValidator = (code: string) => {
   if (!code) {
-    return 'error: Account code required | ';
+    return 'error: Código da conta é Necessário | ';
   }
 
   if (code.length !== 3) {
-    return 'error: Account code date | ';
+    return 'error: Código da conta inválido| ';
   }
 
   return code.trim();

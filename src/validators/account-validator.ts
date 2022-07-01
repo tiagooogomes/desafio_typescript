@@ -2,7 +2,6 @@ import {
   agencyNumberValidator,
   accountCodeValidator,
   accountNumberValidator,
-//   valueValidator,
 } from './customers';
 import { documentValidator } from './accounts';
 import { transactionType } from '../models';
@@ -14,7 +13,6 @@ const accountValidator = (deposit: transactionType) => {
   const accountNumber = accountNumberValidator(deposit.accountNumber);
   const agencyNumber = agencyNumberValidator(deposit.agencyNumber);
   const document = documentValidator(deposit.document);
-  //   const value = valueValidator(deposit.value);
 
   if (accountVerificationCode.split(' ')[0] === 'error:') {
     error += accountVerificationCode;
@@ -31,10 +29,6 @@ const accountValidator = (deposit: transactionType) => {
   if (document.split(' ')[0] === 'error:') {
     error += document;
   }
-
-  //   if (value.split(' ')[0] === 'error:') {
-  //     error += value;
-  //   }
 
   if (error) return error;
   return deposit;

@@ -1,10 +1,10 @@
 const agencyNumberValidator = (agency: string) => {
   if (!agency) {
-    return 'error: Agency number required | ';
+    return 'error: Número da agência é necessário | ';
   }
 
   if (agency.length !== 5) {
-    return 'error: Agency number date | ';
+    return 'error: Número da agência é incorreto | ';
   }
 
   return agency.trim();

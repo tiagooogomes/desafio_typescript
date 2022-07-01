@@ -8,7 +8,6 @@ const checkUserService = (prop: accountType) => {
   const { document } = prop;
 
   const filter = customers.findIndex((account: any) => account.document === document);
-  console.log(filter);
 
   if (filter !== -1) {
     const customer = customers[filter].name;

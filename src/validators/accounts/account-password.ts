@@ -1,10 +1,10 @@
 const passwordValidator = (password: string) => {
   if (!password) {
-    return 'error: password required | ';
+    return 'error: A senha é necessária | ';
   }
 
   if (password.length < 4) {
-    return 'error: password date | ';
+    return 'error: A senha está incorreta | ';
   }
 
   return password.trim();

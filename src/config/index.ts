@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const config = {
-  PORT: process.env.PORT || 7070,
+  PORT: process.env.PORT || 3000,
 };
 
 export { config };

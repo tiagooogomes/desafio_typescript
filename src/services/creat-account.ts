@@ -8,6 +8,7 @@ const creatAccountService = (prop: accountType) => {
 
   const { name } = prop;
   const { document } = prop;
+  const { password } = prop;
 
   const account = {
     agencyNumber: generateNumber(4),
@@ -15,7 +16,8 @@ const creatAccountService = (prop: accountType) => {
     accountVerificationCode: generateNumber(2),
     owner: name,
     CPF: document,
-    balance: 0,
+    Userpassword: password,
+    balance: '0',
   };
 
   customers.push(account);

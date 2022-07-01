@@ -1,14 +1,14 @@
 const nameValidator = (name: string) => {
   if (!name) {
-    return 'error: field required | ';
+    return 'error: Nome é necessário | ';
   }
 
   if (name.length < 3) {
-    return 'error: name too short | ';
+    return 'error: Nome inválido | ';
   }
 
   if (!name.trim()) {
-    return 'error: cannot be only space characters | ';
+    return 'error: Não pode haver espaço entre as letras no nome | ';
   }
 
   return name.trim();

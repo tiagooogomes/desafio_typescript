@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import { transactionType } from '../models';
-// import { accountValidator } from '../validators';
 
 const checkBalanceService = (prop: transactionType, valuee: string) => {
   const customersData: any = fs.readFileSync('accounts.json');
@@ -13,6 +12,10 @@ const checkBalanceService = (prop: transactionType, valuee: string) => {
 
   if (!value) {
     return 'error: O valor é necessario | ';
+  }
+
+  if (value <= 0) {
+    return 'error: O valor tem que ser positivo | ';
   }
 
   if (parseFloat(customers[filter].balance) < value) {

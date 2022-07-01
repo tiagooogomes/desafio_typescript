@@ -5,23 +5,11 @@ const addRemoveService = (deposit: transactionType, type: string, valuee: string
   const customersData: any = fs.readFileSync('accounts.json');
   const customers = JSON.parse(customersData);
 
-  //   const { verificationCode } = deposit.originAccount;
-  //   const { accountNumber } = deposit.originAccount;
-  //   const { document } = deposit.originAccount;
-
-  const { agencyNumber } = deposit;
+  const { accountNumber } = deposit;
 
   const value = parseFloat(valuee);
-  console.log(deposit, ' ola');
 
-  const filter = customers.findIndex((account: any) => account.agencyNumber === agencyNumber);
-
-  //    && account.accountNumber === accountNumber
-  //    && account.verificationCode === verificationCode
-  //    && account.document === document);
-  //  console.log(filter);
-  //   console.log(deposit);
-  //   console.log('olaa');
+  const filter = customers.findIndex((account: any) => account.accountNumber === accountNumber);
 
   const saldo = parseFloat(customers[filter].balance);
 

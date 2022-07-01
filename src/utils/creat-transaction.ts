@@ -5,6 +5,8 @@ import { generateNumber } from '.';
 const creatTransaction = (type: string, transaction: transactionType) => {
   const customersData: any = fs.readFileSync('transactions.json');
   const customers = JSON.parse(customersData);
+  const timeElapsed = Date.now();
+  const today = new Date(timeElapsed);
 
   const id = generateNumber(5);
   let transactionObject = {};
@@ -15,7 +17,7 @@ const creatTransaction = (type: string, transaction: transactionType) => {
       transactionId: id,
       transactiontype: type,
       value: valor,
-      date: 'now',
+      date: today.toUTCString(),
       originAccount: transaction.account,
     };
   }

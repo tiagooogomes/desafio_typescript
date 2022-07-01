@@ -7,31 +7,38 @@ const creatTransfer = (req: Request, res: Response) => {
   const originAccount = accountValidator(req.body.originAccount);
   const destinationAccount = accountValidator(req.body.destinationAccount);
   const value = checkBalanceService(req.body.originAccount, req.body.value);
-  console.log(value, ' valuee');
+
   const acess = req.body;
 
   if (typeof originAccount === 'string') {
-    res.json({
-      status: 'fail',
-      menssage: originAccount,
-    });
+    res
+      .status(400)
+      .json({
+        menssage: originAccount,
+        data: {},
+      });
   } else if (typeof destinationAccount === 'string') {
-    res.json({
-      status: 'fail',
-      menssage: originAccount,
-    });
+    res
+      .status(400)
+      .json({
+        menssage: destinationAccount,
+        data: {},
+      });
+    res.status(400);
   } else if (value.split(' ')[0] === 'error:') {
-    res.json({
-      status: 'fail',
-      menssage: value,
-    });
+    res
+      .status(400)
+      .json({
+        menssage: value,
+        data: {},
+      });
   } else {
     const transaction = creatTransaction('transfer', acess);
     addRemoveService(originAccount, 'daft', value);
     addRemoveService(destinationAccount, 'deposit', value);
     res.json({
-      status: 'success',
-      menssage: transaction,
+      message: 'Transferência realizada',
+      data: transaction,
     });
   }
 };

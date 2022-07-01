@@ -2,11 +2,11 @@ import { validate } from 'gerador-validador-cpf';
 
 const documentValidator = (document: string) => {
   if (!document) {
-    return 'error: document required | ';
+    return 'error: Documento é necessario | ';
   }
 
   if (!validate(document)) {
-    return 'error: invalid document | ';
+    return 'error: Ducumento inválido | ';
   }
 
   return document.trim();

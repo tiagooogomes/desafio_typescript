@@ -9,21 +9,25 @@ const creatDraft = (req: Request, res: Response) => {
   const acess = req.body;
 
   if (typeof accountDraft === 'string') {
-    res.json({
-      status: 'fail',
-      menssage: accountDraft,
-    });
+    res
+      .status(400)
+      .json({
+        menssage: accountDraft,
+        data: {},
+      });
   } else if (value.split(' ')[0] === 'error:') {
-    res.json({
-      status: 'fail',
-      menssage: value,
-    });
+    res
+      .status(400)
+      .json({
+        menssage: value,
+        data: {},
+      });
   } else {
     const transaction = creatTransaction('draft', acess);
     addRemoveService(accountDraft, 'daft', value);
     res.json({
-      status: 'success',
-      menssage: transaction,
+      message: 'Saque realizado',
+      data: transaction,
     });
   }
 };

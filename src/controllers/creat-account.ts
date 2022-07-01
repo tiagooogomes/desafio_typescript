@@ -12,23 +12,25 @@ const creatAccount = (req: Request, res: Response) => {
   const acess = customersValidator(req.body);
 
   if (typeof acess === 'string') {
-    res.json({
-      status: 'fail',
-      menssage: acess,
-    });
+    res
+      .status(400)
+      .json({
+        menssage: acess,
+        data: {},
+      });
   } else if (userExiste) {
-    creatAccountService(acess);
+    const createdAccount = creatAccountService(acess);
     res.json({
-      status: 'success',
-      menssage: userExiste,
+      message: userExiste,
+      data: createdAccount,
     });
   } else {
     const createdAccount = creatAccountService(acess);
     customers.push(acess);
     fs.writeFileSync('customers.json', JSON.stringify(customers));
     res.json({
-      status: 'success',
-      menssage: createdAccount,
+      message: 'úsuario cadastro e conta criado',
+      data: createdAccount,
     });
   }
 };

@@ -8,16 +8,18 @@ const creatDeposit = (req: Request, res: Response) => {
   const acess = req.body;
 
   if (typeof accountDeposit === 'string') {
-    res.json({
-      status: 'fail',
-      menssage: accountDeposit,
-    });
+    res
+      .status(400)
+      .json({
+        menssage: accountDeposit,
+        data: {},
+      });
   } else {
     const transaction = creatTransaction('deposit', acess);
     addRemoveService(accountDeposit, 'deposit', '4000');
     res.json({
-      status: 'success',
-      menssage: transaction,
+      message: 'Depósito realizado',
+      data: transaction,
     });
   }
 };
