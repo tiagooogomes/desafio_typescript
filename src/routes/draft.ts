@@ -1,9 +1,9 @@
 import Router from 'express';
-import { creatDraft } from '../controllers';
+import { CreateDraft } from '../controllers';
 
 const draft = Router();
 
 draft.route('/draft')
-  .put(creatDraft);
+.put(new CreateDraft().handle.bind(new CreateDraft()));
 
 export default draft;

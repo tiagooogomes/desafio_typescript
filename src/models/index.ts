@@ -1,2 +1,3 @@
-export { transactionType } from './transaction';
-export { accountType } from './account';
+export { extractType, depositType, transferType, draftType } from './transaction';
+export { customersType } from './customers';
+export { account } from './accounts';

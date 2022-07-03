@@ -1,9 +1,9 @@
 import Router from 'express';
-import { creatDeposit } from '../controllers';
+import { CreateDeposit } from '../controllers';
 
 const deposit = Router();
 
 deposit.route('/deposit')
-  .put(creatDeposit);
+  .put(new CreateDeposit().handle.bind(new CreateDeposit()));
 
 export default deposit;

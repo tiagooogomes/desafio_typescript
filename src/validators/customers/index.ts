@@ -1,3 +1,5 @@
-export { accountCodeValidator } from './accountVerificationCode';
-export { accountNumberValidator } from './accountNumber';
-export { agencyNumberValidator } from './agencyNumber';
+export { PasswordValidator } from './password';
+export { DateValidator } from './birtdate';
+export { EmailValidator } from './email';
+export { NameValidator } from './name';
+export { CpfValidator } from './cpf';

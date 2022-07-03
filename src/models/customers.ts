@@ -1,11 +1,12 @@
-interface accountType
+interface customersType
 {
     name: string;
     password: string;
     birtdate: string;
-    document: string;
+    CPF: string;
+    email: string;
     status: string;
     menssage: string[];
 }
 
-export { accountType };
+export { customersType };

@@ -1,9 +1,9 @@
-import Router from 'express';
-import { creatTransfer } from '../controllers';
+// import Router from 'express';
+// import { creatTransfer } from '../controllers';
 
-const transfer = Router();
+// const transfer = Router();
 
-transfer.route('/transfer')
-  .put(creatTransfer);
+// transfer.route('/transfer')
+//   .put(creatTransfer);
 
-export default transfer;
+// export default transfer;

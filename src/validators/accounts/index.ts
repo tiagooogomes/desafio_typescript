@@ -1,4 +1,4 @@
-export { passwordValidator } from './account-password';
-export { birthdateValidator } from './birtdate';
-export { documentValidator } from './document';
-export { nameValidator } from './name';
+export { AccountNumberValidator } from "./account-number";
+export { AgencyNumberValidator } from "./agency-number";
+export { AccountCodeValidator } from "./account-code";
+export { AgencyCodeValidator } from "./agency-code";

@@ -1,31 +1,36 @@
-interface transactionType {
-    originAccount: {
-        agencyNumber: string;
-        accountNumber: string;
-        verificationCode: string;
-        document: string;
-        password: string
-      };
-    destinationAccount: {
-      agencyNumber: string;
-      accountNumber: string;
-      verificationCode: string;
-      document: string;
-      password: string
-    };
-    account: {
-        agencyNumber: string;
-        accountNumber: string;
-        verificationCode: string;
-        document: string;
-        password: string
-    };
-    value: string;
-    agencyNumber: string;
-    accountNumber: string;
-    verificationCode: string;
-    document: string;
-    password: string
+import { account } from '.';
+
+interface extractType {
+    account: account;
 }
 
-export { transactionType };
+interface depositType {
+    id: string;
+    account: account;
+    value: string;
+    type: string;
+    date: string;
+}
+
+interface transferType {
+    id: string;
+    origin: {
+      account: account;
+    }  
+    destiny: {
+      account: account;
+    }
+    value: string;
+    type: string;
+    date: string;
+}
+
+interface draftType {
+    id: string;
+    account: account;
+    value: string;
+    type: string;
+    date: string;
+}
+
+export { extractType, depositType, transferType, draftType };

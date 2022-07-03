@@ -1,20 +1,42 @@
 import * as fs from 'fs';
-import { accountType } from '../models';
+import { customersType } from '../models';
 
-const checkUserService = (prop: accountType) => {
-  const customersData: any = fs.readFileSync('customers.json');
-  const customers = JSON.parse(customersData);
+class CheckUserService {
+  public CPF: string;
+  public customer: Promise<string>;
+  public true: string;
+  public id: string;
 
-  const { document } = prop;
+  private customersData: any = fs.readFileSync('customers.json');
+  private customers = JSON.parse(this.customersData);
 
-  const filter = customers.findIndex((account: any) => account.document === document);
+  public constructor(user: customersType) {
+    this.CPF = user.CPF;
+    this.true = '';
+    this.id = '';
+    this.customer = this.execute();
+  };
 
-  if (filter !== -1) {
-    const customer = customers[filter].name;
-    return `Ficamos feliz que está abrindo outra conta, ${customer.split(' ')[0]}`;
-  }
+  private async execute(): Promise<string> {
 
-  return '';
+    const filter = this.customers.findIndex((account: customersType) => account.CPF === this.CPF);
+
+    if(filter !== -1) {
+      this.true += `Ficamos feliz que está abrindo outra conta, ${this.customers[filter].name.split(' ')[0]}`;
+      this.id = this.customers[filter].id;
+      console.log(this.true)
+    };
+
+    return '';
+  };
 };
 
-export { checkUserService };
+export { CheckUserService };
+
+
+  // if (filter !== -1) {
+  //   const customer = customers[filter].name;
+  //   return `Ficamos feliz que está abrindo outra conta, ${customer.split(' ')[0]}`;
+  // }
+
+  // return '';

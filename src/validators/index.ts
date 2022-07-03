@@ -1,2 +1,2 @@
-export { customersValidator } from './customers-validator';
-export { accountValidator } from './account-validator';
+export { CustomersValidator } from './customers-validator';
+export { AccountValidator } from './account-validator';

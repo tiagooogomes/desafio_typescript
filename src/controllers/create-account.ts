@@ -1,12 +1,12 @@
+import { CreatAccountService } from '../services/create-account';
 import { Request, Response } from 'express';
-import { CreateDepositService } from '../services';
 
-class CreateDeposit {
-  private service = CreateDepositService;
+class CreateAccount {
+  private service = CreatAccountService;
 
   public async handle(req: Request, res: Response) {
     try {
-      const response = await new this.service().execute(req.body, false);
+      const response = await new this.service().execute(req.body);
       res
         .status(200)
         .json({
@@ -14,7 +14,6 @@ class CreateDeposit {
           data: response,
         });
     } catch (erro: any) {
-      console.log(erro)
       res
         .status(400)
         .json({
@@ -25,4 +24,4 @@ class CreateDeposit {
   }
 }
 
-export { CreateDeposit };
+export { CreateAccount };

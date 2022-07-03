@@ -1,6 +1,6 @@
 import express from 'express';
 
-import transfer from './transfer';
+// import transfer from './transfer';
 import deposit from './deposit';
 import account from './account';
 import draft from './draft';
@@ -13,6 +13,6 @@ app.use(express.json());
 app.use(account);
 app.use(deposit);
 app.use(draft);
-app.use(transfer);
+// app.use(transfer);
 
 export default app;

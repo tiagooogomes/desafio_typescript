@@ -1,35 +1,28 @@
 import { Request, Response } from 'express';
-import { addRemoveService, checkBalanceService } from '../services';
-import { creatTransaction } from '../utils';
-import { accountValidator } from '../validators';
+import { CreateDraftService } from '../services';
 
-const creatDraft = (req: Request, res: Response) => {
-  const accountDraft = accountValidator(req.body.account);
-  const value = checkBalanceService(req.body.account, req.body.value);
-  const acess = req.body;
+class CreateDraft {
+  private service = CreateDraftService;
 
-  if (typeof accountDraft === 'string') {
-    res
-      .status(400)
-      .json({
-        menssage: accountDraft,
-        data: {},
-      });
-  } else if (value.split(' ')[0] === 'error:') {
-    res
-      .status(400)
-      .json({
-        menssage: value,
-        data: {},
-      });
-  } else {
-    const transaction = creatTransaction('draft', acess);
-    addRemoveService(accountDraft, 'daft', value);
-    res.json({
-      message: 'Saque realizado',
-      data: transaction,
-    });
+  public async handle(req: Request, res: Response) {
+    try {
+      const response = await new this.service().execute(req.body, false);
+      res
+        .status(200)
+        .json({
+          message: '',
+          data: response,
+        });
+    } catch (erro: any) {
+      console.log(erro)
+      res
+        .status(400)
+        .json({
+          message: erro.message,
+          data: {},
+        });
+    }
   }
-};
+}
 
-export { creatDraft };
+export { CreateDraft };

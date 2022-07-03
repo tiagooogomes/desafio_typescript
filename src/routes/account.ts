@@ -1,9 +1,9 @@
 import Router from 'express';
-import { creatAccount } from '../controllers';
+import { CreateAccount } from '../controllers';
 
 const account = Router();
 
 account.route('/account')
-  .post(creatAccount);
+  .post(new  CreateAccount().handle.bind(new  CreateAccount()));
 
 export default account;

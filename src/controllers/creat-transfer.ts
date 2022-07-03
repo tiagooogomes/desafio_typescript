@@ -1,46 +1,28 @@
 import { Request, Response } from 'express';
-import { addRemoveService, checkBalanceService } from '../services';
-import { creatTransaction } from '../utils';
-import { accountValidator } from '../validators';
+import { CreateTransferServices } from '../services';
 
-const creatTransfer = (req: Request, res: Response) => {
-  const originAccount = accountValidator(req.body.originAccount);
-  const destinationAccount = accountValidator(req.body.destinationAccount);
-  const value = checkBalanceService(req.body.originAccount, req.body.value);
+class CreateDraft {
+  private service = CreateTransferServices;
 
-  const acess = req.body;
-
-  if (typeof originAccount === 'string') {
-    res
-      .status(400)
-      .json({
-        menssage: originAccount,
-        data: {},
-      });
-  } else if (typeof destinationAccount === 'string') {
-    res
-      .status(400)
-      .json({
-        menssage: destinationAccount,
-        data: {},
-      });
-    res.status(400);
-  } else if (value.split(' ')[0] === 'error:') {
-    res
-      .status(400)
-      .json({
-        menssage: value,
-        data: {},
-      });
-  } else {
-    const transaction = creatTransaction('transfer', acess);
-    addRemoveService(originAccount, 'daft', value);
-    addRemoveService(destinationAccount, 'deposit', value);
-    res.json({
-      message: 'Transferência realizada',
-      data: transaction,
-    });
+  public async handle(req: Request, res: Response) {
+    try {
+      const response = await new this.service().execute(req.body);
+      res
+        .status(200)
+        .json({
+          message: '',
+          data: response,
+        });
+    } catch (erro: any) {
+      console.log(erro)
+      res
+        .status(400)
+        .json({
+          message: erro.message,
+          data: {},
+        });
+    }
   }
-};
+}
 
-export { creatTransfer };
+export { CreateDraft };
