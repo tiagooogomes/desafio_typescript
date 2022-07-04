@@ -1,6 +1,6 @@
+import { generateNumber } from './generate-number';
 import { Account } from '../models';
 import { v4 } from 'uuid';
-import { generateNumber } from './generate-number';
 
 class GenerateAccount {
    
@@ -16,7 +16,7 @@ class GenerateAccount {
             password: password,
             user_id: id,
         } as Account;
-    }
-}
+    };
+};
 
 export { GenerateAccount };

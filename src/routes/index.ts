@@ -10,10 +10,10 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use(transfer);
 app.use(account);
 app.use(deposit);
-app.use(draft);
 app.use(extract);
-app.use(transfer);
+app.use(draft);
 
 export default app;

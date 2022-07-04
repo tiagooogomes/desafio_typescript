@@ -16,9 +16,9 @@ module.exports = {
   ],
   rules: {
     'import/prefer-default-export': 'off',
-    'import/extensions': 'off',
-    'import/no-unresolved': 'off',
     'exceptAfterSingleLine': 'true',
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
     'linebreak-style': 'off',
   },
 };

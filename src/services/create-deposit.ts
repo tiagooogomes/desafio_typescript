@@ -14,26 +14,24 @@ class CreateDepositService {
 
           if(accountValidated.errors) {
             throw new ExceptionTreatment(accountValidated.errors);
-          }
+          };
           const accountBalance = await new AccountsTable().list(
             accountValidated.account.account.agency_number,  accountValidated.account.account.agency_verification_code, 
             accountValidated.account.account.account_verification_code,  accountValidated.account.account.account_number
           );
 
           if(accountBalance.length === 0) {
-            throw new ExceptionTreatment('400: Conta não encontrada');
-          }
+            throw new ExceptionTreatment('Conta não encontrada');
+          };
 
           let account = accountBalance[0];
-
           const customers = await new CustomersTable().list(accountValidated.account.account.CPF);
 
           if(customers.length === 0) {
-            throw new ExceptionTreatment('400: Usuário não encontrado');
-          }
+            throw new ExceptionTreatment('Usuário não encontrado');
+          };
 
           const customer = customers[0];
-          
           const depositTransaction = await new TransactionTable().insert({
             account_destiny_id: account.id,
             account_origin_id: null,
@@ -70,12 +68,12 @@ class CreateDepositService {
               document: customer.cpf,
               owner: customer.name
             }
-          }
+          };
 
         } catch(error: any) {
-            throw new ExceptionTreatment(error.message);
-        } 
-    }
-}
+          throw new ExceptionTreatment(error.message);
+        }; 
+    };
+};
 
-export { CreateDepositService }
+export { CreateDepositService };

@@ -4,8 +4,8 @@ import { CustomersTable } from '../clients/daos/customers';
 import { AccountsTable } from '../clients/daos/accounts';
 import { TransferValidator } from '../validators';
 import { ExceptionTreatment } from '../utils';
-import { v4 } from 'uuid';
 import bcrypt from 'bcrypt';
+import { v4 } from 'uuid';
 
 class CreateTransferServices {
 
@@ -15,21 +15,22 @@ class CreateTransferServices {
 
             if(accountValidated.errors) {
               throw new ExceptionTreatment(accountValidated.errors);
-            }
+            };
+
             const accountBalanceOrigin = await new AccountsTable().list(
               accountValidated.account.originAccount.agency_number,  accountValidated.account.originAccount.agency_verification_code, 
               accountValidated.account.originAccount.account_verification_code,  accountValidated.account.originAccount.account_number
             );
             
             if(accountBalanceOrigin.length === 0) {
-              throw new ExceptionTreatment('400: Conta de origem não encontrada');
-            }
+              throw new ExceptionTreatment('Conta de origem não encontrada');
+            };
   
             let accountOrigin = accountBalanceOrigin[0];
 
             if(!(await bcrypt.compare(accountValidated.account.originAccount.password, accountOrigin.password))) {
-                throw new ExceptionTreatment('400: Senha incoerente');
-            }
+                throw new ExceptionTreatment('Senha incoerente');
+            };
 
             const accountBalanceDestiny = await new AccountsTable().list(
                 accountValidated.account.destinyAccount.agency_number,  accountValidated.account.destinyAccount.agency_verification_code, 
@@ -37,30 +38,28 @@ class CreateTransferServices {
             );
               
             if(accountBalanceDestiny.length === 0) {
-              throw new ExceptionTreatment('400: Conta de destino não encontrada');
-            }
+              throw new ExceptionTreatment('Conta de destino não encontrada');
+            };
     
             let accountDestiny = accountBalanceDestiny[0];
-
             const customersOrigin = await new CustomersTable().list(accountValidated.account.originAccount.CPF);
   
             if(customersOrigin.length === 0) {
-              throw new ExceptionTreatment('400: Usuário de origem não encontrado');
-            }
+              throw new ExceptionTreatment('Usuário de origem não encontrado');
+            };
 
             const customerOrigin = customersOrigin[0];
-
             const customersDestiny = await new CustomersTable().list(accountValidated.account.destinyAccount.CPF);
   
             if(customersDestiny.length === 0) {
-              throw new ExceptionTreatment('400: Usuário de destino não encontrado');
-            }
+              throw new ExceptionTreatment('Usuário de destino não encontrado');
+            };
 
             const customerDestiny = customersDestiny[0];
   
             if(accountOrigin.balance < accountValidated.account.value + 1) {
-              throw new ExceptionTreatment('400: Você está pobre');
-            }
+              throw new ExceptionTreatment('Você está pobre');
+            };
             
             const transferTransaction = await new TransactionTable().insert({
               account_destiny_id: accountDestiny.id,
@@ -88,8 +87,8 @@ class CreateTransferServices {
             accountDestiny = await new AccountsTable().update(
                 Number(accountDestiny.balance) + Number(accountValidated.account.value), 
                 accountDestiny.id
-              );
-  
+            );
+
             return {
                 transactionId: transferTransaction.id,
                 date: transferTransaction.date,
@@ -109,13 +108,11 @@ class CreateTransferServices {
                     agencyVerificationCode: accountDestiny.agency_verification_code,
                     document: customerDestiny.cpf
                 }
-            }
-            
-
+            };
         } catch(error: any) {
             throw new ExceptionTreatment(error.message);
-        } 
-    }
-}
+        }; 
+    };
+};
 
-export { CreateTransferServices }
+export { CreateTransferServices };

@@ -8,9 +8,7 @@ class GetExtract {
   public async handle(req: Request<{}, {}, {}, ExtractBody> , res: Response) {
     try {
       const response = await new this.service().execute(req.query);
-      res
-        .status(200)
-        .json({
+      res.json({
           message: '',
           data: response,
         });

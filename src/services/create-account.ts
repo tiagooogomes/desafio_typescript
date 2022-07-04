@@ -12,12 +12,11 @@ class CreatAccountService {
   public async execute(body: AccountBody): Promise<AccountResponse> {
     try {
       const customerValidated = await new CustomersValidator(body);
-
       let customer = await new CheckUserService().execute(body.CPF);
 
       if(customerValidated.errors) {
         throw new ExceptionTreatment(customerValidated.errors);
-      }
+      };
 
       if(!customer) {
         customer = await new CustomersTable().insert({
@@ -27,7 +26,7 @@ class CreatAccountService {
           id: v4(),
           name: customerValidated.user.name || '',
         });
-      }
+      };
 
       const newAccount = await new GenerateAccount().execute(customer.id, customerValidated.user.password || '');
       const account = await new AccountsTable().insert({
@@ -39,7 +38,7 @@ class CreatAccountService {
         balance: newAccount.balance,
         user_id: newAccount.user_id,
         id: newAccount.id
-      })
+      });
       return {
         agencyVerificationCode: account.agency_verification_code,
         accountVerificationCode: account.account_verification_code,
@@ -52,8 +51,8 @@ class CreatAccountService {
 
     } catch(error: any) {
       throw new ExceptionTreatment(error.message);
-    }
-  }
-}
+    };
+  };
+};
 
 export { CreatAccountService };

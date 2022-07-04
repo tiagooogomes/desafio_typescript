@@ -1,12 +1,12 @@
 interface Account {
-    id: string;
-    agency_number: string;
-    agency_verification_code: string;
     account_verification_code: string;
+    agency_verification_code: string;
     account_number: string;
-    balance: number;
+    agency_number: string;
     password: string;
     user_id: string;
-}
+    balance: number;
+    id: string;
+};
 
 export { Account };

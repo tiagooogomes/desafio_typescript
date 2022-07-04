@@ -1,76 +1,76 @@
-import { Transaction } from "./transaction"
+import { Transaction } from "./transaction";
 
 interface AccountResponse {
-  agencyNumber: string
-  agencyVerificationCode: string
-  accountNumber: string
-  accountVerificationCode: string
-  owner: string
-  document: string
-  birthdate: Date
-}
+  accountVerificationCode: string;
+  agencyVerificationCode: string;
+  accountNumber: string;
+  agencyNumber: string;
+  document: string;
+  birthdate: Date;
+  owner: string;
+};
 
 interface DepositResponse {
-  transactionId: string
-  type: string
-  value: number
-  date: Date
+  transactionId: string;
+  value: number;
+  type: string;
+  date: Date;
   account: {
-    agencyNumber: string
-    agencyVerificationCode: string
-    accountNumber: string
-    accountVerificationCode: string
-    owner: string
-    document: string
-  }
-}
+    accountVerificationCode: string;
+    agencyVerificationCode: string;
+    accountNumber: string;
+    agencyNumber: string;
+    document: string;
+    owner: string;
+  };
+};
 
 interface DraftResponse {
-  transactionId: string
-  type: string
-  value: number
-  date: Date
+  transactionId: string;
+  value: number;
+  type: string;
+  date: Date;
   account: {
-    agencyNumber: string
-    agencyVerificationCode: string
-    accountNumber: string
-    accountVerificationCode: string
-    owner: string
-    document: string
-  }
-}
+    agencyVerificationCode: string;
+    accountVerificationCode: string;
+    accountNumber: string;
+    agencyNumber: string;
+    document: string;
+    owner: string;
+  };
+};
 
 interface TransferResponse {
-  transactionId: string
-  type: string
-  value: number
-  date: Date
+  transactionId: string;
+  value: number;
+  type: string;
+  date: Date;
   originAccount: {
-    agencyNumber: string
-    agencyVerificationCode: string
-    accountNumber: string
-    accountVerificationCode: string
-    document: string
-  }
+    accountVerificationCode: string;
+    agencyVerificationCode: string;
+    accountNumber: string;
+    agencyNumber: string;
+    document: string;
+  };
   destinationAccount: {
-    agencyNumber: string
-    agencyVerificationCode: string
-    accountNumber: string
-    accountVerificationCode: string
-    document: string
-  }
-}
+    accountVerificationCode: string;
+    agencyVerificationCode: string;
+    accountNumber: string;
+    agencyNumber: string;
+    document: string;
+  };
+};
 
 interface ExtractResponse {
-  agencyNumber: string
-  agencyVerificationCode: string
-  accountNumber: string
-  accountVerificationCode: string
-  owner: string
-  document: string
-  birthdate: Date
+  accountVerificationCode: string;
+  agencyVerificationCode: string;
+  accountNumber: string;
+  agencyNumber: string;
+  document: string;
   balance: number;
+  birthdate: Date;
+  owner: string;
   transactions: Transaction[];
-}
+};
 
 export { AccountResponse, DepositResponse, DraftResponse, TransferResponse, ExtractResponse };

@@ -15,7 +15,7 @@ class AccountValidator {
   public constructor(user: Account) {
     this.errors = '';
     this.account = this.validate(user);
-  }
+  };
 
   private validate(account: Account): Partial<Account> {
     const validAccountCode = new AccountCodeValidator(account.account_verification_code);
@@ -35,7 +35,7 @@ class AccountValidator {
     };
 
     return accountData;
-  }
+  };
 };
 
 export { AccountValidator };

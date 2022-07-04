@@ -13,7 +13,7 @@ class GetExtractServices {
 
           if(accountValidated.errors) {
             throw new ExceptionTreatment(accountValidated.errors);
-          }
+          };
 
           const accountBalance = await new AccountsTable().list(
             accountValidated.account.agency_number,  accountValidated.account.agency_verification_code, 
@@ -21,15 +21,15 @@ class GetExtractServices {
           );
 
           if(accountBalance.length === 0) {
-            throw new ExceptionTreatment('400: Conta não encontrada');
-          }
+            throw new ExceptionTreatment('Conta não encontrada');
+          };
 
           let account = accountBalance[0];
           const customers = await new CustomersTable().list(accountValidated.account.CPF);
 
           if(customers.length === 0) {
-            throw new ExceptionTreatment('400: Usuário não encontrado');
-          }
+            throw new ExceptionTreatment('Usuário não encontrado');
+          };
 
           const customer = customers[0];
           const transactions = await new TransactionTable().list(account.id);
@@ -44,12 +44,12 @@ class GetExtractServices {
             document: customer.cpf,
             owner: customer.name,
             transactions: transactions
-          }
+          };
 
         } catch(error: any) {
             throw new ExceptionTreatment(error.message);
-        } 
-    }
-}
+        }; 
+    };
+};
 
-export { GetExtractServices }
+export { GetExtractServices };
