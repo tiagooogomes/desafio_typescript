@@ -1,73 +1,59 @@
-import * as fs from 'fs';
-import { customersType } from '../models';
 import { ExceptionTreatment, GenerateAccount } from '../utils';
+import { CustomersTable } from '../clients/daos/customers';
+import { AccountsTable } from '../clients/daos/accounts';
+import { AccountBody, AccountResponse } from '../models';
 import { CustomersValidator } from '../validators';
 import { CheckUserService } from './check-user';
+import bcrypt from 'bcrypt';
 import { v4 } from 'uuid';
 
 class CreatAccountService {
-  private customersData: any = fs.readFileSync('customers.json');
-  private accountsData: any = fs.readFileSync('accounts.json');
-  private customers = JSON.parse(this.customersData);
-  private accounts = JSON.parse(this.accountsData);
 
-  public async execute(customer: customersType) {
+  public async execute(body: AccountBody): Promise<AccountResponse> {
     try {
-      const customerValidated = await new CustomersValidator(customer);
-      const customerExist = await new CheckUserService(customer);
-      const newId = v4();
+      const customerValidated = await new CustomersValidator(body);
+
+      let customer = await new CheckUserService().execute(body.CPF);
 
       if(customerValidated.errors) {
         throw new ExceptionTreatment(customerValidated.errors);
       }
 
-      if(customerExist.true) {
-        const newAccount = await new GenerateAccount().execute(customerExist.id, customer.password);
-        this.accounts.push(newAccount);
-        fs.writeFileSync('accounts.json', JSON.stringify(this.accounts));
-
-        return newAccount;
+      if(!customer) {
+        customer = await new CustomersTable().insert({
+          birtdate: new Date(customerValidated.user.birtdate || ''),
+          cpf: customerValidated.user.CPF || '',
+          email: customerValidated.user.email || '',
+          id: v4(),
+          name: customerValidated.user.name || '',
+        });
       }
 
-      const newAccount = await new GenerateAccount().execute(newId, customer.password);
-      const newCustomer = {
-        id: newId,
-        birtdate: customerValidated.user.birtdate,
-        email: customerValidated.user.email,
-        name: customerValidated.user.name,
-        CPF: customerValidated.user.CPF,
-      }
-
-      this.customers.push(newCustomer);
-      this.accounts.push(newAccount);
-      fs.writeFileSync('customers.json', JSON.stringify(this.customers));
-      fs.writeFileSync('accounts.json', JSON.stringify(this.accounts));
-      
-      return newAccount;
+      const newAccount = await new GenerateAccount().execute(customer.id, customerValidated.user.password || '');
+      const account = await new AccountsTable().insert({
+        agency_verification_code: newAccount.agency_verification_code,
+        account_verification_code: newAccount.account_verification_code,
+        account_number: newAccount.account_number,
+        agency_number: newAccount.agency_number,
+        password: await bcrypt.hash(newAccount.password, 10),
+        balance: newAccount.balance,
+        user_id: newAccount.user_id,
+        id: newAccount.id
+      })
+      return {
+        agencyVerificationCode: account.agency_verification_code,
+        accountVerificationCode: account.account_verification_code,
+        accountNumber: account.account_number,
+        agencyNumber: account.agency_number,
+        birthdate: customer.birtdate,
+        document: customer.cpf,
+        owner: customer.name
+      };
 
     } catch(error: any) {
       throw new ExceptionTreatment(error.message);
     }
   }
 }
-
-//   const { name } = prop;
-//   const { document } = prop;
-//   const { password } = prop;
-
-//   const account = {
-//     agencyNumber: generateNumber(4),
-//     accountNumber: generateNumber(6),
-//     accountVerificationCode: generateNumber(2),
-//     owner: name,
-//     CPF: document,
-//     Userpassword: password,
-//     balance: '0',
-//   };
-
-//   customers.push(account);
-//   fs.writeFileSync('accounts.json', JSON.stringify(customers));
-//   return account;
-// };
 
 export { CreatAccountService };

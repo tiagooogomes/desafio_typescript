@@ -1,36 +1,18 @@
-import { account } from '.';
-
-interface extractType {
-    account: account;
+interface Transaction {
+  id: string;
+  account_origin_id: string | null;
+	account_destiny_id:string | null;
+  value: number;
+  date: Date;
+  type: string;
 }
 
-interface depositType {
-    id: string;
-    account: account;
-    value: string;
-    type: string;
-    date: string;
+interface Customer {
+  id: string;
+	birtdate: Date;
+	email: string;
+	name: string;
+	cpf: string;
 }
 
-interface transferType {
-    id: string;
-    origin: {
-      account: account;
-    }  
-    destiny: {
-      account: account;
-    }
-    value: string;
-    type: string;
-    date: string;
-}
-
-interface draftType {
-    id: string;
-    account: account;
-    value: string;
-    type: string;
-    date: string;
-}
-
-export { extractType, depositType, transferType, draftType };
+export { Transaction, Customer };

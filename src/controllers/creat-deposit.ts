@@ -6,7 +6,7 @@ class CreateDeposit {
 
   public async handle(req: Request, res: Response) {
     try {
-      const response = await new this.service().execute(req.body, false);
+      const response = await new this.service().execute(req.body);
       res
         .status(200)
         .json({
@@ -14,7 +14,6 @@ class CreateDeposit {
           data: response,
         });
     } catch (erro: any) {
-      console.log(erro)
       res
         .status(400)
         .json({

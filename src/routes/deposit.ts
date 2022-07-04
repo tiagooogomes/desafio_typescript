@@ -1,5 +1,5 @@
-import Router from 'express';
 import { CreateDeposit } from '../controllers';
+import Router from 'express';
 
 const deposit = Router();
 

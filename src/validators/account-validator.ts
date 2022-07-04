@@ -4,20 +4,20 @@ import {
   AccountCodeValidator,
   AgencyCodeValidator,
 } from './accounts';
-// import { documentValidator } from './accounts';
-import { account } from '../models';
+
+import { Account } from '../models';
 
 class AccountValidator {
 
-  public account: Partial<account>;
+  public account: Partial<Account>;
   public errors: string;
 
-  public constructor(user: account) {
+  public constructor(user: Account) {
     this.errors = '';
     this.account = this.validate(user);
   }
 
-  private validate(account: account): Partial<account> {
+  private validate(account: Account): Partial<Account> {
     const validAccountCode = new AccountCodeValidator(account.account_verification_code);
     const validAgencyCode = new AgencyCodeValidator(account.agency_verification_code);
     const validAccountNumber = new AccountNumberValidator(account.account_number);
@@ -27,13 +27,13 @@ class AccountValidator {
       `${validAccountCode.errors}${validAgencyCode.errors}${validAccountNumber.errors}${validAgencyNumber.errors}`,
     );
 
-    const accountData: Partial<account> = {
+    const accountData: Partial<Account> = {
       agency_verification_code: validAgencyCode.agencyCodeVerification,
       account_verification_code: validAccountCode.accountVerification,
       account_number: validAccountNumber.account_number,
       agency_number: validAgencyNumber.agency_number,
     };
-// console.log( 'olla',this.errors,' olaa')
+
     return accountData;
   }
 };

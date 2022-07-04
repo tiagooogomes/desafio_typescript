@@ -6,7 +6,7 @@ class CreateDraft {
 
   public async handle(req: Request, res: Response) {
     try {
-      const response = await new this.service().execute(req.body, false);
+      const response = await new this.service().execute(req.body);
       res
         .status(200)
         .json({

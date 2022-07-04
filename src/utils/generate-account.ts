@@ -1,10 +1,10 @@
-import { account } from '../models';
+import { Account } from '../models';
 import { v4 } from 'uuid';
 import { generateNumber } from './generate-number';
 
 class GenerateAccount {
    
-    public async execute(id: string, password: string): Promise<account> {
+    public async execute(id: string, password: string): Promise<Account> {
         
         return {
             id: v4(),
@@ -12,10 +12,10 @@ class GenerateAccount {
             agency_verification_code:  generateNumber(2),
             account_verification_code:  generateNumber(2),
             account_number: `${generateNumber(7)}-${generateNumber(1)}`,
-            balance: '0',
+            balance: 0,
             password: password,
             user_id: id,
-        } as account;
+        } as Account;
     }
 }
 

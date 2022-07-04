@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateTransferServices } from '../services';
 
-class CreateDraft {
+class CreatTransfer {
   private service = CreateTransferServices;
 
   public async handle(req: Request, res: Response) {
@@ -25,4 +25,4 @@ class CreateDraft {
   }
 }
 
-export { CreateDraft };
+export { CreatTransfer };
