@@ -10,12 +10,12 @@ class EmailValidator {
 
   private validate(email: string): string {
     if (email.length === 0) {
-      this.errors += 'email:field required|';
+      this.errors += 'Email: O email é necessário| ';
       return '';
     };
 
     if (!this.regex.test(email)) {
-      this.errors += 'email:invalid email|';
+      this.errors += 'Email: Email inválido| ';
       return '';
     };
 

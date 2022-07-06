@@ -9,17 +9,17 @@ class NameValidator {
 
   private validate(name: string): string {
     if (!name) {
-      this.errors += 'name:field required|';
+      this.errors += 'Nome: O nome é necessário| ';
       return '';
     };
 
     if (name.trim().length < 4) {
-      this.errors += 'name:use a name with more then 4 characters|';
+      this.errors += 'Nome: O nome deve ter mais de 4 caractéres| ';
       return '';
     };
 
     if (!name.trim()) {
-      this.errors += 'name:cannot be only space characters|';
+      this.errors += 'Nome: Não pode haver espaço entre os caracteres| ';
       return '';
     };
 

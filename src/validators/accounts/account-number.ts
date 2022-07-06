@@ -9,7 +9,7 @@ class AccountNumberValidator {
 
     private validate(account_number: string): string {
         if (account_number.length === 0) {
-            this.errors += 'account_number:field required|';
+            this.errors += 'Número da Conta: O número da conta é necessário| ';
             return '';
         };
 

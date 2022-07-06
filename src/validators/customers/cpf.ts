@@ -11,12 +11,12 @@ class CpfValidator {
 
   private validate(cpf: string): string {
     if (cpf.length === 0) {
-      this.errors += 'cpf:field required|';
+      this.errors += 'CPF: O CPF é necessário|';
       return '';
     };
 
     if (!validate(cpf)) {
-      this.errors += 'cpf:invalid cpf|';
+      this.errors += 'CPF: CPF inválido| ';
       return '';
     };
 

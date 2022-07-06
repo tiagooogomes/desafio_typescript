@@ -9,7 +9,7 @@ class AgencyNumberValidator {
 
     private validate(agency_number: string): string {
         if (agency_number.length === 0) {
-            this.errors += 'agency_number:field required|';
+            this.errors += 'Número da Agência: O número da agência é necessario| ';
             return '';
         };
 

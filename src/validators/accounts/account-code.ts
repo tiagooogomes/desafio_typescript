@@ -9,7 +9,7 @@ class AccountCodeValidator {
 
     private validate(accountVerification: string): string {
         if (accountVerification.length === 0) {
-            this.errors += 'accountVerification:field required|';
+            this.errors += 'Códido da Conta: O código da conta é necessário| ';
             return '';
         };
 

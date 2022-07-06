@@ -9,17 +9,17 @@ class DateValidator {
 
   private validate(date: string): string {
     if (!date) {
-      this.errors += 'birthdate: field required';
+      this.errors += 'Nascimento: A data de nascimento é necessária| ';
       return '';
     };
 
     if (!new Date(date).getTime()) {
-      this.errors += 'birthdate: invalid date|';
+      this.errors += 'Nascimento: Data de nascimento inválida| ';
       return '';
     };
 
     if (new Date(date) > new Date()) {
-      this.errors += 'birthdate: cannot be a future date|';
+      this.errors += 'Nascimento: A data de nascimento incoerente| ';
       return '';
     };
 

@@ -9,22 +9,22 @@ class PasswordValidator {
 
   private validate(password: string): string {
     if (!password) {
-      this.errors += 'password:field required| ';
+      this.errors += 'Senha: A senha é necessária| ';
       return '';
     };
 
     if (password.trim().length < 5) {
-      this.errors += 'password:use a password with more then 5 characters| ';
+      this.errors += 'Senha: A senha teve ter mais no mínimo 4 caracteres| ';
       return '';
     };
 
     if (password.trim().length > 10) {
-      this.errors += 'password:use a password with maximum of 10 characters| ';
+      this.errors += 'Senha: A senha só ter no maximo 10 caracteres| ';
       return '';
     };
 
     if (!password.trim()) {
-      this.errors += 'password:cannot be only space characters| ';
+      this.errors += 'Senha: Não pode haver espaço entre os caracteres| ';
       return '';
     };
 

@@ -10,12 +10,12 @@ class valueValidator {
     private validate(value: number): number {
 
         if(Number.isNaN(value)){
-            this.errors += 'Value: field required| ';
+            this.errors += 'Valor: Formato incoerente| ';
             return 0;
         };
 
         if (value <= 0) {
-            this.errors += 'Value: field required| ';
+            this.errors += 'Valor: Valor não positívo não é permitido| ';
             return 0;
         };
 

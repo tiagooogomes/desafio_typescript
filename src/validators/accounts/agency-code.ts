@@ -9,7 +9,7 @@ class AgencyCodeValidator {
 
     private validate(agencyCodeVerification: string): string {
         if (agencyCodeVerification.length === 0) {
-            this.errors += 'agencyCodeVerification:field required|';
+            this.errors += 'Código da Agência: O código da agência é necessário| ';
             return '';
         };
 
